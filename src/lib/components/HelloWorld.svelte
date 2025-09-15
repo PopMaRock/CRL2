@@ -34,7 +34,7 @@
 <Card class="w-[420px] shadow-xl backdrop-blur-sm">
 	<Header class="pt-6">
 		<Title
-			class="bg-gradient-to-r from-indigo-500 to-pink-500 bg-clip-text text-center text-3xl font-bold text-transparent"
+			class="text-center text-3xl font-bold text-primary"
 		>
 			<p>{message}</p>
 		</Title>
@@ -50,7 +50,7 @@
 					type="text"
 					placeholder="e.g., Hello, Welcome"
 					bind:value={gs.greet}
-					class="mt-1 border-1 border-indigo-500 focus-visible:ring-2 focus-visible:ring-purple-500"
+					class="mt-1 border-1"
 				/>
 			</div>
 			<div>
@@ -62,14 +62,14 @@
 					type="text"
 					placeholder="Enter your name"
 					bind:value={gs.name}
-					class="mt-1 border-1 border-indigo-500 focus-visible:ring-2 focus-visible:ring-purple-500"
+					class="mt-1 border-1"
 				/>
 			</div>
 			<div class="flex space-x-4">
-				<Button type="submit" class="flex-1 bg-gradient-to-r from-indigo-500 to-pink-500">
+				<Button type="submit" class="flex-1 btn">
 					Save
 				</Button>
-				<Button type="button" variant="outline" onclick={handleReset} class="flex-1 ">Reset</Button>
+				<Button type="button" variant="outline" onclick={handleReset} class="flex-1 btn">Reset</Button>
 			</div>
 		</form>
 	</Content>

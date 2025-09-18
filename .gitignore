@@ -20,3 +20,10 @@ dist-ssr
 !.env.example
 /src-tauri/target/
 /src-tauri/gen/schemas
+*.csv
+/static/onnx/*
+/static/_models_cache/*
+/cache
+/TRASH
+/data
+/static/onnx*

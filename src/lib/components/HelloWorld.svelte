@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { FILES, GlobalState, preventDefault } from '$lib/commands.svelte';
+	import { FILES, preventDefault } from '$lib/commands.svelte';
 	import { Input } from '$lib/components/ui/input/index';
 	import { Button } from '$lib/components/ui/button/index';
 	import { Card, Header, Title, Content } from '$lib/components/ui/card/index';
@@ -34,7 +34,7 @@
 <Card class="w-[420px] shadow-xl backdrop-blur-sm">
 	<Header class="pt-6">
 		<Title
-			class="text-center text-3xl font-bold text-primary"
+			class="text-center text-3xl font-bold"
 		>
 			<p>{message}</p>
 		</Title>

@@ -12,9 +12,9 @@
   "app": {
     "windows": [
       {
-        "title": "com.wolfrog.crl",
-        "width": 800,
-        "height": 600,
+        "title": "CRL - Local Adventures",
+        "width": 1550,
+        "height": 1000,
         "resizable": true,
         "fullscreen": false
       }

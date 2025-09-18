@@ -6,6 +6,7 @@
 			"$lib": ["./src/lib"],
 			"$lib/*": ["./src/lib/*"]
 		},
+		"composite": true,
 		"target": "ESNext",
 		"useDefineForClassFields": true,
 		"module": "ESNext",

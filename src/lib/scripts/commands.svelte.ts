@@ -12,9 +12,14 @@ export enum FILES {
     NAME_FILE = 'name.txt'
 }
 
-export class GlobalState {
-    private _state = $state({ name: '', greet: '' });
-
+export class gState {
+    private _state = $state(
+        { 
+            authenticated: true, 
+            currentPage: '',
+            greet: '' 
+        }
+    );
     get greet() {
         return this._state.greet;
     }
@@ -22,27 +27,23 @@ export class GlobalState {
     set greet(value: string) {
         this._state.greet = value;
     }
-
-    get name() {
-        return this._state.name;
+    get authenticated() {
+        return this._state.authenticated;
     }
-
-    set name(value: string) {
-        this._state.name = value;
+    set authenticated(value: boolean) {
+        this._state.authenticated = value;
     }
-
-    get nlen() {
-        return this.name.length;
+    get currentPage() {
+        return this._state.currentPage;
     }
-
-    get glen() {
-        return this.greet.length;
+    set currentPage(value: string) {
+       this._state.currentPage = value;
     }
 
     async read(path: FILES) {
         const contentFromFile = await invoke<string>('read', { path });
         if (path === FILES.NAME_FILE) {
-            this.name = contentFromFile;
+           // this.name = contentFromFile;
         } else if (path === FILES.GREET_FILE) {
             this.greet = contentFromFile;
         }
@@ -51,14 +52,14 @@ export class GlobalState {
     async write(path: FILES, contents: string) {
         await invoke('write', { path, contents });
         if (path === FILES.NAME_FILE) {
-            this.name = contents;
+           // this.name = contents;
         } else if (path === FILES.GREET_FILE) {
             this.greet = contents;
         }
     }
 
     reset() {
-        this.name = '';
+        this.authenticated = false;
         this.greet = '';
     }
 }

@@ -1,11 +1,11 @@
 <script lang="ts">
-	import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
-	import FolderIcon from "@lucide/svelte/icons/folder";
-	import ForwardIcon from "@lucide/svelte/icons/forward";
-	import Trash2Icon from "@lucide/svelte/icons/trash-2";
 	import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 	import { useSidebar } from "$lib/components/ui/sidebar/context.svelte.js";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
+	import CiArrowRightMd from "~icons/ci/arrow-right-md";
+	import CiFolder from "~icons/ci/folder";
+	import CiMoreHorizontal from "~icons/ci/more-horizontal";
+	import CiTrashFull from "~icons/ci/trash-full";
 
 	let {
 		experiences,
@@ -39,7 +39,7 @@
 					<DropdownMenu.Trigger>
 						{#snippet child({ props })}
 							<Sidebar.MenuAction showOnHover {...props}>
-								<EllipsisIcon />
+								<CiMoreHorizontal class="m-1"/>
 								<span class="sr-only">More</span>
 							</Sidebar.MenuAction>
 						{/snippet}
@@ -50,16 +50,16 @@
 						align={sidebar.isMobile ? "end" : "start"}
 					>
 						<DropdownMenu.Item>
-							<FolderIcon class="text-muted-foreground" />
+							<CiFolder class="text-muted-foreground" />
 							<span>View Project</span>
 						</DropdownMenu.Item>
 						<DropdownMenu.Item>
-							<ForwardIcon class="text-muted-foreground" />
+							<CiArrowRightMd class="text-muted-foreground" />
 							<span>Share Project</span>
 						</DropdownMenu.Item>
 						<DropdownMenu.Separator />
 						<DropdownMenu.Item>
-							<Trash2Icon class="text-muted-foreground" />
+							<CiTrashFull class="text-muted-foreground" />
 							<span>Delete Project</span>
 						</DropdownMenu.Item>
 					</DropdownMenu.Content>
@@ -67,8 +67,8 @@
 			</Sidebar.MenuItem>
 		{/each}
 		<Sidebar.MenuItem>
-			<Sidebar.MenuButton class="text-sidebar-foreground/70">
-				<EllipsisIcon class="text-sidebar-foreground/70" />
+			<Sidebar.MenuButton class="text-sidebar-foreground/70 mt-2">
+				<CiMoreHorizontal class="text-sidebar-foreground/70" />
 				<span>More</span>
 			</Sidebar.MenuButton>
 		</Sidebar.MenuItem>

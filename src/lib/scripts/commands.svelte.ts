@@ -14,19 +14,12 @@ export enum FILES {
 
 export class gState {
     private _state = $state(
-        { 
-            authenticated: true, 
+        {
+            authenticated: true,
             currentPage: '',
-            greet: '' 
+            os: '',
         }
     );
-    get greet() {
-        return this._state.greet;
-    }
-
-    set greet(value: string) {
-        this._state.greet = value;
-    }
     get authenticated() {
         return this._state.authenticated;
     }
@@ -39,13 +32,18 @@ export class gState {
     set currentPage(value: string) {
        this._state.currentPage = value;
     }
-
+    get os() {
+        return this._state.os;
+    }
+    async get_os() {
+        if(!this._state.os)
+            this._state.os = await invoke<string>('get_os');
+        return this._state.os;
+    }
     async read(path: FILES) {
         const contentFromFile = await invoke<string>('read', { path });
         if (path === FILES.NAME_FILE) {
            // this.name = contentFromFile;
-        } else if (path === FILES.GREET_FILE) {
-            this.greet = contentFromFile;
         }
     }
 
@@ -53,13 +51,10 @@ export class gState {
         await invoke('write', { path, contents });
         if (path === FILES.NAME_FILE) {
            // this.name = contents;
-        } else if (path === FILES.GREET_FILE) {
-            this.greet = contents;
         }
     }
 
     reset() {
         this.authenticated = false;
-        this.greet = '';
     }
 }

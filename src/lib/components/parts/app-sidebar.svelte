@@ -1,12 +1,10 @@
 <script lang="ts" module>
-	import ChartPieIcon from "@lucide/svelte/icons/chart-pie";
-	import FrameIcon from "@lucide/svelte/icons/frame";
-	import MapIcon from "@lucide/svelte/icons/map";
 	import GameIconsDramaMasks from "~icons/game-icons/drama-masks";
 	import GameIconsSeaDragon from "~icons/game-icons/sea-dragon";
 	import GameIconsSpottedBug from "~icons/game-icons/spotted-bug";
 	import GameIconsTiedScroll from "~icons/game-icons/tied-scroll";
 	import GameIconsWorld from "~icons/game-icons/world";
+	import CiMap from '~icons/ci/map';
 
 	// This is sample data.
 	const data = {
@@ -52,17 +50,17 @@
 			{
 				name: "Cyberpunk David",
 				url: "#",
-				icon: FrameIcon,
+				icon: CiMap,
 			},
 			{
 				name: "Coding agent",
 				url: "#",
-				icon: ChartPieIcon,
+				icon: CiMap,
 			},
 			{
 				name: "Pipebomb expert",
 				url: "#",
-				icon: MapIcon,
+				icon: CiMap,
 			},
 		],
 	};

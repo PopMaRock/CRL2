@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { fade } from "svelte/transition";
-	import { gState } from "$lib/scripts/commands.svelte";
 	import Login from "$lib/components/Login.svelte";
-    import Main from "$lib/components/Main.svelte";
+	import Main from "$lib/components/Main.svelte";
+	import { gState } from "$lib/scripts/commands.svelte";
 
 	const gs: GlobalState = new gState();
-	onMount(() => {
+	onMount(async () => {
 		document.documentElement.classList.add("dark");
+		await gs.get_os(); //get OS on app start
+		console.log("OS:", gs.os);
 	});
 </script>
 

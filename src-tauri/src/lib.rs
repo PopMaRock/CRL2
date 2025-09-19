@@ -1,5 +1,6 @@
 mod commands;
-use commands::default::{read, write};
+mod llama;
+use commands::default::{get_os, read, write};
 
 #[allow(clippy::missing_panics_doc)]
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -15,7 +16,7 @@ pub fn run() {
             }
             Ok(())
         })
-        .invoke_handler(tauri::generate_handler![read, write])
+        .invoke_handler(tauri::generate_handler![read, write, get_os])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

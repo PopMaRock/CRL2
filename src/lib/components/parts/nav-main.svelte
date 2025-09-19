@@ -1,5 +1,5 @@
 <script lang="ts">
-import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
+import MajesticonsChevronRight from '~icons/majesticons/chevron-right';
 import * as Collapsible from "$lib/components/ui/collapsible/index.js";
 import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 
@@ -36,7 +36,7 @@ let {
 											<item.icon/>
 										{/if}
 										<span>{item.title}</span>
-										<ChevronRightIcon
+										<MajesticonsChevronRight
 											class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"
 										/>
 									</Sidebar.MenuButton>

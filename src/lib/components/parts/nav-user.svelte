@@ -3,12 +3,8 @@
 	import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import { useSidebar } from "$lib/components/ui/sidebar/index.js";
-	import BadgeCheckIcon from "@lucide/svelte/icons/badge-check";
-	import BellIcon from "@lucide/svelte/icons/bell";
-	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
-	import CreditCardIcon from "@lucide/svelte/icons/credit-card";
-	import LogOutIcon from "@lucide/svelte/icons/log-out";
-	import SparklesIcon from "@lucide/svelte/icons/sparkles";
+	import CiWavyCheck from '~icons/ci/wavy-check';
+	import CiLogOut from '~icons/ci/log-out';
 
 	let { user }: { user: { name: string; class: string; avatar: string } } = $props();
 	const sidebar = useSidebar();
@@ -32,7 +28,7 @@
 							<span class="truncate font-medium">{user.name}</span>
 							<span class="truncate text-xs">{user.class}</span>
 						</div>
-						<ChevronsUpDownIcon class="ml-auto size-4" />
+						<!--<ChevronsUpDownIcon class="ml-auto size-4" />--> Icon
 					</Sidebar.MenuButton>
 				{/snippet}
 			</DropdownMenu.Trigger>
@@ -57,28 +53,20 @@
 				<DropdownMenu.Separator />
 				<DropdownMenu.Group>
 					<DropdownMenu.Item>
-						<SparklesIcon />
+						(icon)
 						Upgrade to Pro
 					</DropdownMenu.Item>
 				</DropdownMenu.Group>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Group>
 					<DropdownMenu.Item>
-						<BadgeCheckIcon />
+						<CiWavyCheck />
 						Account
-					</DropdownMenu.Item>
-					<DropdownMenu.Item>
-						<CreditCardIcon />
-						Billing
-					</DropdownMenu.Item>
-					<DropdownMenu.Item>
-						<BellIcon />
-						Notifications
 					</DropdownMenu.Item>
 				</DropdownMenu.Group>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Item>
-					<LogOutIcon />
+					<CiLogOut />
 					Log out
 				</DropdownMenu.Item>
 			</DropdownMenu.Content>

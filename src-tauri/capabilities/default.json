@@ -3,5 +3,10 @@
 	"identifier": "default",
 	"description": "enables the default permissions",
 	"windows": ["main"],
-	"permissions": ["core:default"]
+	"permissions": [
+		"process:default",
+		"shell:default",
+		"http:default",
+		"deep-link:default"
+	]
 }

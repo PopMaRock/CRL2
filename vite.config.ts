@@ -7,7 +7,14 @@ const host = process.env.TAURI_DEV_HOST;
 
 export default defineConfig({
 	plugins: [
-		svelte({ compilerOptions: { runes: true } }),
+		svelte({
+			compilerOptions: { runes: true },
+			onwarn: (warning, handler) => {
+				// disable a11y warnings
+				if (warning.code.startsWith("a11y-")) return;
+				handler(warning);
+			}
+		}),
 		tailwindcss(),
 		Icons({
 			compiler: "svelte",
@@ -30,8 +37,12 @@ export default defineConfig({
 	},
 	envPrefix: ["VITE_", "TAURI_ENV_*"],
 	build: {
-		target: process.env.TAURI_ENV_PLATFORM === "windows" ? "chrome105" : "safari13",
-		minify: !process.env.TAURI_ENV_DEBUG ? "esbuild" : false,
-		sourcemap: !!process.env.TAURI_ENV_DEBUG
+		// Tauri supports es2021
+		target: ["safari15", "chrome100", "firefox100", "edge100"],
+		// don't minify for debug builds
+		minify: process.env.TAURI_DEBUG ? false : "esbuild",
+		// produce sourcemaps for debug builds
+		sourcemap: !!process.env.TAURI_DEBUG,
+		chunkSizeWarningLimit: 2000
 	}
 });

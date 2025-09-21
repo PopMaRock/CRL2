@@ -27,3 +27,8 @@ dist-ssr
 /TRASH
 /data
 /static/onnx*
+/build
+/.svelte-kit
+/package
+.env
+.env.*

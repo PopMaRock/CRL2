@@ -1,48 +1,40 @@
-import { svelte } from "@sveltejs/vite-plugin-svelte";
+import dns from "node:dns";
+import { sveltekit } from "@sveltejs/kit/vite";
 import tailwindcss from "@tailwindcss/vite";
-import path from "path";
-import { defineConfig } from "vite";
+import dotenv from "dotenv";
 import Icons from "unplugin-icons/vite";
-const host = process.env.TAURI_DEV_HOST;
+import topLevelAwait from "vite-plugin-top-level-await";
+import wasm from "vite-plugin-wasm";
 
-export default defineConfig({
+dns.setDefaultResultOrder("verbatim");
+dotenv.config();
+/** @type {import('vite').UserConfig} */
+export default {
 	plugins: [
-		svelte({
+		sveltekit(
+			/*{
 			compilerOptions: { runes: true },
 			onwarn: (warning, handler) => {
 				// disable a11y warnings
 				if (warning.code.startsWith("a11y-")) return;
 				handler(warning);
 			}
-		}),
+		}*/
+		),
+		wasm(),
+		topLevelAwait(),
 		tailwindcss(),
 		Icons({
 			compiler: "svelte",
 			autoInstall: true // experimental - autoinstalls icons as and when used.
 		})
 	],
-	resolve: {
-		alias: {
-			$lib: path.resolve("./src/lib")
-		}
+	optimizeDeps: {
+		exclude: ["onnxruntime-web"]
 	},
-	server: {
-		port: 1420,
-		strictPort: true,
-		host: host || false,
-		hmr: host ? { protocol: "ws", host, port: 1421 } : undefined,
-		watch: {
-			ignored: ["**/src-tauri/**"]
-		}
-	},
-	envPrefix: ["VITE_", "TAURI_ENV_*"],
-	build: {
-		// Tauri supports es2021
-		target: ["safari15", "chrome100", "firefox100", "edge100"],
-		// don't minify for debug builds
-		minify: process.env.TAURI_DEBUG ? false : "esbuild",
-		// produce sourcemaps for debug builds
-		sourcemap: !!process.env.TAURI_DEBUG,
-		chunkSizeWarningLimit: 2000
-	}
-});
+	resolve: process.env.VITEST
+		? {
+				conditions: ["browser"]
+			}
+		: undefined
+};

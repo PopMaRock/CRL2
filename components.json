@@ -5,9 +5,9 @@
 		"baseColor": "neutral"
 	},
 	"aliases": {
-		"components": "$lib/components",
-		"utils": "$lib/scripts/utils",
-		"ui": "$lib/components/ui",
+		"components": "$components",
+		"utils": "$lib/utilities",
+		"ui": "$components/ui",
 		"hooks": "$lib/hooks",
 		"lib": "$lib"
 	},

@@ -1,0 +1,7 @@
+-- CRL main database. //TODO: Replace json data with proper - not urgent.
+--CRL Tables
+----personas
+----dungeons
+----characters
+----settings
+----prompts

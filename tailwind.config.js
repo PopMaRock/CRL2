@@ -1,8 +1,9 @@
-import { fontFamily } from "tailwindcss/defaultTheme";
+import  { fontFamily } from "tailwindcss/defaultTheme";
 
 
 /** @type {import('tailwindcss').Config} */
 const config = {
+    // @ts-ignore
     darkMode: ["class"],
     content: ["./src/**/*.{html,js,svelte,ts}"],
     safelist: ["dark"],

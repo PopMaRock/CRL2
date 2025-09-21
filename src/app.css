@@ -160,4 +160,7 @@
   }
 }
 //-----------------
+  .pwd-input {
+    -webkit-text-security: disc;
+  }
 

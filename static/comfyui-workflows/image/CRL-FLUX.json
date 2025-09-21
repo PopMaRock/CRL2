@@ -1,0 +1,274 @@
+{
+  "247": {
+    "inputs": {
+      "empty_cache": true,
+      "gc_collect": true,
+      "unload_all_models": true,
+      "image_pass": [
+        "356",
+        0
+      ]
+    },
+    "class_type": "VRAM_Debug",
+    "_meta": {
+      "title": "VRAM Debug"
+    }
+  },
+  "356": {
+    "inputs": {
+      "samples": [
+        "492",
+        5
+      ],
+      "vae": [
+        "434",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "367": {
+    "inputs": {
+      "text": "%face_caption%"
+    },
+    "class_type": "Text Multiline (Code Compatible)",
+    "_meta": {
+      "title": "Face Caption"
+    }
+  },
+  "369": {
+    "inputs": {
+      "text": "%body_caption%"
+    },
+    "class_type": "Text Multiline (Code Compatible)",
+    "_meta": {
+      "title": "Body caption"
+    }
+  },
+  "374": {
+    "inputs": {
+      "text": "%prompt%"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "Positive prompt"
+    }
+  },
+  "383": {
+    "inputs": {
+      "text1": [
+        "367",
+        0
+      ],
+      "text2": [
+        "369",
+        0
+      ],
+      "separator": ","
+    },
+    "class_type": "CR Text Concatenate",
+    "_meta": {
+      "title": "🔤 CR Text Concatenate"
+    }
+  },
+  "386": {
+    "inputs": {
+      "text1": [
+        "374",
+        0
+      ],
+      "text2": [
+        "383",
+        0
+      ],
+      "separator": ","
+    },
+    "class_type": "CR Text Concatenate",
+    "_meta": {
+      "title": "🔤 CR Text Concatenate"
+    }
+  },
+  "428": {
+    "inputs": {
+      "weight": 1,
+      "start_at": 0,
+      "end_at": 1,
+      "fusion": "auto_weight",
+      "fusion_weight_max": 1,
+      "fusion_weight_min": 0,
+      "train_step": 1000,
+      "use_gray": true,
+      "model": [
+        "498",
+        1
+      ],
+      "pulid_flux": [
+        "429",
+        0
+      ],
+      "eva_clip": [
+        "430",
+        0
+      ],
+      "face_analysis": [
+        "431",
+        0
+      ],
+      "image": [
+        "495",
+        0
+      ]
+    },
+    "class_type": "ApplyPulidFlux",
+    "_meta": {
+      "title": "Apply PuLID Flux"
+    }
+  },
+  "429": {
+    "inputs": {
+      "pulid_file": "pulid_flux_v0.9.1.safetensors"
+    },
+    "class_type": "PulidFluxModelLoader",
+    "_meta": {
+      "title": "Load PuLID Flux Model"
+    }
+  },
+  "430": {
+    "inputs": {},
+    "class_type": "PulidFluxEvaClipLoader",
+    "_meta": {
+      "title": "Load Eva Clip (PuLID Flux)"
+    }
+  },
+  "431": {
+    "inputs": {
+      "provider": "CUDA"
+    },
+    "class_type": "PulidFluxInsightFaceLoader",
+    "_meta": {
+      "title": "Load InsightFace (PuLID Flux)"
+    }
+  },
+  "433": {
+    "inputs": {
+      "clip_name1": "ClipL.safetensors",
+      "clip_name2": "google_t5-v1_1-xxl_encoderonly-fp8_e4m3fn.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "DualCLIPLoader"
+    }
+  },
+  "434": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "492": {
+    "inputs": {
+      "steps": 17,
+      "cfg": 2,
+      "sampler_name": "%sampler%",
+      "scheduler": "%scheduler%",
+      "denoise": 1,
+      "image_output": "Hide",
+      "link_id": 0,
+      "save_prefix": "ComfyUI",
+      "seed": "%seed%",
+      "pipe": [
+        "498",
+        0
+      ],
+      "model": [
+        "428",
+        0
+      ]
+    },
+    "class_type": "easy fullkSampler",
+    "_meta": {
+      "title": "EasyKSampler (Full)"
+    }
+  },
+  "493": {
+    "inputs": {
+      "vae_name": "flux1DevVAE_safetensors.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "494": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "247",
+        1
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "495": {
+    "inputs": {
+      "image": "%char_avatar%"
+    },
+    "class_type": "ETN_LoadImageBase64",
+    "_meta": {
+      "title": "Load Image (Base64)"
+    }
+  },
+  "498": {
+    "inputs": {
+      "ckpt_name": "%model%",
+      "vae_name": "Baked VAE",
+      "lora_name": "None",
+      "lora_model_strength": 1,
+      "lora_clip_strength": 1,
+      "resolution": "1024 x 1024",
+      "empty_latent_width": 1024,
+      "empty_latent_height": 1024,
+      "positive": [
+        "386",
+        0
+      ],
+      "batch_size": 1,
+      "model_override": [
+        "499",
+        0
+      ],
+      "clip_override": [
+        "433",
+        0
+      ],
+      "vae_override": [
+        "493",
+        0
+      ]
+    },
+    "class_type": "easy fluxLoader",
+    "_meta": {
+      "title": "EasyLoader (Flux)"
+    }
+  },
+  "499": {
+    "inputs": {
+      "ckpt_name": "%model%"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  }
+}

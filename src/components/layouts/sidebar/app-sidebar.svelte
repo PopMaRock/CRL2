@@ -16,32 +16,32 @@
 		navMain: [
 			{
 				title: "Dungeons",
-				url: "#",
+				url: "",
 				icon: GameIconsSeaDragon,
 				isActive: true,
 				items: [],
 			},
 			{
 				title: "Chat",
-				url: "#",
+				url: "/CRL/characters",
 				icon: GameIconsDramaMasks,
 				items: [],
 			},
 			{
 				title: "Worlds",
-				url: "#",
+				url: "",
 				icon: GameIconsWorld,
 				items: [],
 			},
 			{
 				title: "Lore",
-				url: "#",
+				url: "",
 				icon: GameIconsTiedScroll,
 				items: [],
 			},
 			{
 				title: "Report bug",
-				url: "#",
+				url: "",
 				icon: GameIconsSpottedBug,
 				items: [],
 			},
@@ -49,17 +49,17 @@
 		experiences: [
 			{
 				name: "Cyberpunk David",
-				url: "#",
+				url: "",
 				icon: CiMap,
 			},
 			{
 				name: "Coding agent",
-				url: "#",
+				url: "",
 				icon: CiMap,
 			},
 			{
 				name: "Pipebomb expert",
-				url: "#",
+				url: "",
 				icon: CiMap,
 			},
 		],
@@ -72,6 +72,7 @@
 	import NavUser from "./nav-user.svelte";
 	import * as Sidebar from "$components/ui/sidebar/index.js";
 	import type { ComponentProps } from "svelte";
+    import { goto } from "$app/navigation";
 
 	let { ref = $bindable(null), collapsible = "icon", ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
 </script>
@@ -80,7 +81,9 @@
 	<Sidebar.Header>
 		<Sidebar.Menu>
 			<Sidebar.MenuItem>
-				<div class="flex items-center mt-2">
+				<!-- svelte-ignore a11y_click_events_have_key_events -->
+				<!-- svelte-ignore a11y_no_static_element_interactions -->
+				<div class="flex items-center mt-2 cursor-pointer" onclick={() => goto("/CRL")}>
 					<div class="text-sidebar-primary-foreground flex items-center w-10">
 						<img src="/crl-images/icon_logo.png" class="align-center w-12" alt="Logo. Clicking it will tack ya hame" />
 					</div>

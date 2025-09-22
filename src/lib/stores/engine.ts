@@ -1,3 +1,4 @@
+import { clone } from "lodash-es";
 import { get, writable } from "svelte/store";
 import { llmDefault } from "$lib/constants/defaults/llm-default";
 import { dbGet, dbSet } from "$lib/controllers/db";
@@ -25,7 +26,7 @@ const createSettingsStore = () => {
 			return result;
 		},
 		reset() {
-			this.set(llmDefault);
+			this.set(clone(llmDefault));
 		}
 	};
 };

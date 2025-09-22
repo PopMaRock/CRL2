@@ -10,7 +10,7 @@ export default {
 		handler(warning);
 	},
 	compilerOptions: {
-		customElement: true
+		customElement: false
 	},
 	kit: {
 		adapter: adapter(),

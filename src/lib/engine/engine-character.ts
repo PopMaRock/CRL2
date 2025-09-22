@@ -1,3 +1,4 @@
+import { clone } from "lodash-es";
 import { get, writable } from "svelte/store";
 import { CharacterLlmDefault, characterDefaults } from "$lib/constants/defaults/character-settings-default";
 import { dbGetLLMSettings, dbPutCharacter, dbUpdateCharacter, dbUpdateLLMSettings } from "$lib/controllers/character";
@@ -15,7 +16,7 @@ function createCharacterSettingsStore() {
 		set,
 		update,
 		reset: async () => {
-			set(structuredClone(CharacterLlmDefault));
+			set(clone(CharacterLlmDefault));
 			const mEngine: any = await engineSettings.get();
 			DebugLogger.debug("mEngine", mEngine);
 
@@ -73,13 +74,13 @@ function createCharacterSettingsStore() {
  * @property {Function} getId - Returns the current character's ID, or an empty string if not set.
  */
 function createCharacterStore() {
-	const { subscribe, set, update } = writable<Character>();
+	const { subscribe, set, update } = writable<Character>(clone(characterDefaults));
 	const self = {
 		subscribe,
 		set,
 		update,
 		reset: () => {
-			set(structuredClone(characterDefaults));
+			set(clone(characterDefaults));
 		},
 		updateEntry: async (data?: any) => {
 			let charId = get(self).charId;

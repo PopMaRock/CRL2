@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { goto } from "$app/navigation";
+	import Button from "$components/ui/button/button.svelte";
 	import * as Collapsible from "$components/ui/collapsible/index.js";
 	import * as Sidebar from "$components/ui/sidebar/index.js";
 	import MajesticonsChevronRight from "~icons/majesticons/chevron-right";
@@ -62,16 +64,29 @@
 				</Collapsible.Root>
 			{:else}
 				<Sidebar.MenuItem>
-					<Sidebar.MenuButton tooltipContent={item.title} class="">
-						{#snippet child({ props })}
+					{#if item?.url}
+						<Sidebar.MenuButton tooltipContent={item.title} class="" onclick={() => goto(item.url)}>
+							{#snippet child({ props })}
 							<a href={item.url} {...props}>
 								{#if item.icon}
 									<item.icon />
 								{/if}
 								<span>{item.title}</span>
-							</a>
-						{/snippet}
-					</Sidebar.MenuButton>
+								</a>
+							{/snippet}
+						</Sidebar.MenuButton>
+					{:else}
+						<Sidebar.MenuButton tooltipContent={item.title} class="">
+							{#snippet child({ props })}
+								<a href={item.url} {...props}>
+									{#if item.icon}
+										<item.icon />
+									{/if}
+									<span>{item.title}</span>
+								</a>
+							{/snippet}
+						</Sidebar.MenuButton>
+					{/if}
 				</Sidebar.MenuItem>
 			{/if}
 		{/each}

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import AppSidebar from "$components/parts/app-sidebar.svelte";
-  import SheetTemplate from "$components/parts/sheet-template.svelte";
+  import AppSidebar from "$components/layouts/sidebar/app-sidebar.svelte";
+  import SheetTemplate from "$components/templates/sheet-template.svelte";
   import { Button } from "$components/ui/button";
   import { Input } from "$components/ui/input";
   import { Label } from "$components/ui/label";

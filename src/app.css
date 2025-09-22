@@ -163,4 +163,171 @@
   .pwd-input {
     -webkit-text-security: disc;
   }
+ .editable {
+    width: 100%;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+    border: none;
+    background: none;
+    resize: none;
+    overflow: hidden;
+  }
+  .editable:focus {
+    outline: none;
+  }
+  .textarea-add {
+    @apply resize-none text-lg rounded-none m-0 w-full overflow-y-auto border-0 py-[.6rem] mt-2 mb-2 pl-3 pr-7 focus:ring-0 focus-visible:ring-0;
+}
+.input-add {
+    padding: 2.5px 2px;
+    @apply rounded-md focus:ring-0 focus-visible:ring-0;
+}
+/* SCROLL BAR */
+  @media screen and (min-width: 700px) {
+    * ::-webkit-scrollbar,::-webkit-scrollbar {
+        width:2px!important;
+        border-radius: 999px;
+        height: 0!important
+    }
 
+    * ::-webkit-scrollbar-track,::-webkit-scrollbar-track {
+        background: transparent!important
+    }
+
+    * ::-webkit-scrollbar-thumb,::-webkit-scrollbar-thumb {
+        border-radius: 999px;
+        background: hsla(0,0%,100%,.5)!important;
+        height: 16px!important
+    }
+
+    * ::-webkit-scrollbar-thumb:hover,::-webkit-scrollbar-thumb:hover {
+        background: #fff!important
+    }
+}
+/* === CHARACTER CARD === */
+/*This is sort of from WebKitCoding on youtube. 
+There's thousand copy-cat tutorials of this effect
+but fuck if I know who did it first... */
+    #CharacterCard h2 {
+        position: absolute;
+        text-align: center;
+        left: 50%;
+        top: 3rem;
+        transform: translateX(-50%);
+    }
+
+    /* filepath: /media/vince/AI/AI Adventures/CRL/src/app.postcss */
+    #CharacterCard {
+        --card-height: 40vh;
+        --card-width: calc(var(--card-height) / 1.7);
+    }
+    #CharacterCard .card {
+        height: var(--card-height);
+        aspect-ratio: 0.73; /*DO NOT REMOVE THIS. Only fuckin thing holding the character card together*/
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding: 0;
+        perspective: 2500px;
+        margin: 0;
+        background-color: transparent;
+        --tw-ring-color: transparent;
+    }
+
+    #CharacterCard .cover-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 0.5rem;
+    }
+
+    #CharacterCard .wrapper {
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+        transition: all 0.4s;
+    }
+
+    #CharacterCard .card:hover .wrapper {
+        transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+        box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    }
+
+    #CharacterCard .wrapper::before,
+    #CharacterCard .wrapper::after {
+        content: "";
+        width: 100%;
+        transition: all 0.4s;
+        position: absolute;
+        left: 0;
+        opacity: 0;
+        height: 3.9rem;
+    }
+
+    #CharacterCard .wrapper::before {
+        top: 0;
+        height: 100%;
+        background-image: linear-gradient(
+            to top,
+            transparent 46%,
+            rgba(12, 13, 19, 0.5) 68%,
+            rgba(12, 13, 19) 97%
+        );
+    }
+
+    #CharacterCard .wrapper::after {
+        bottom: 0;
+        background-image: linear-gradient(
+            to bottom,
+            transparent 46%,
+            rgba(12, 13, 19, 0.5) 68%,
+            rgba(12, 13, 19) 97%
+        );
+    }
+
+    #CharacterCard .card:hover .wrapper::before {
+        opacity: 1;
+    }
+
+    #CharacterCard .card:hover .wrapper::after {
+        opacity: 1;
+        height: 5.8rem;
+    }
+
+    #CharacterCard .title {
+        color: #bbb;
+        margin-bottom: 6rem;
+        transition: transform 0.4s;
+    }
+
+    #CharacterCard .card:hover .title {
+        transform: translate3d(0%, -50px, 100px);
+    }
+
+    #CharacterCard .character {
+        width: 100%;
+        opacity: 0;
+        position: absolute;
+        z-index: -1;
+        transition: all 0.4s;
+    }
+
+    #CharacterCard .card:hover .character {
+        opacity: 1;
+        transform: translate3d(0%, -10%, 100px);
+        mask-image: linear-gradient(180deg, black 70%, transparent);
+        -webkit-mask-image: linear-gradient(180deg, black 70%, transparent);
+    }
+
+    @media (orientation: portrait) {
+        #CharacterCard .card {
+            margin: 0 0;
+        }
+        #CharacterCard {
+            --card-height: 35rem;
+        }
+    }

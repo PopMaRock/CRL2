@@ -212,7 +212,7 @@ export async function generateComfyImage(
 	//generate a random prompt id
 	/*const promptId = Math.random().toString(36).substring(2, 15);
 	const imageData = result.data;
-	//************************************** 
+	//**************************************
 	if (typeof imageData !== 'string') return '';
 	if (!opts?.skipSave) return await saveGeneratedImage(promptId, msgPrompt, imageData, game.id, hash);
 	return result;*/
@@ -306,7 +306,6 @@ async function callSdApi(source: string, body: any, url?: string, opts?: { strea
 }
 /** INTERFACE */
 export async function interactiveSd(
-	modalStore: any,
 	action: number,
 	modelType: string,
 	hash?: number
@@ -316,10 +315,10 @@ export async function interactiveSd(
 	const Dcs = get(EngineConversation);
 	let opts: any = {};
 	const { dSD, game } = getSdStores();
-	if (!game.id) return DebugLogger.error("No character/game ID found.");
+	if (!game.hash) return DebugLogger.error("No character/game ID found.");
 
 	// Helper to handle LLM-related prompt generation workflow.
-	async function handleLlmPrompt(getPrompt: () => Promise<any>, title: string, desc: string, Ms: any) {
+	async function handleLlmPrompt(getPrompt: () => Promise<any>, title: string, desc: string) {
 		let promptText: any;
 		loadState.update((s: any) => ({ ...s, llm: true }));
 		try {
@@ -358,7 +357,7 @@ export async function interactiveSd(
 			} else {
 				selectedMsg = Dcs[Dcs.length - 1].content;
 			}
-			prom = await promptEdit(modalStore, selectedMsg.replace(/\n/g, ""), title, desc);
+			prom = await promptEdit(selectedMsg.replace(/\n/g, ""), title, desc);
 			break;
 		}
 
@@ -379,7 +378,6 @@ export async function interactiveSd(
 				() => generateImagePrompt(template, 5),
 				"Edit prompt",
 				"Edit the prompt before sending to image generator",
-				modalStore
 			);
 			break;
 		}
@@ -399,8 +397,7 @@ export async function interactiveSd(
 				//() => generateImagePrompt(resp, template, 5, cutMsg),
 				() => generateImagePrompt(template, 5),
 				"Edit prompt",
-				"Edit the prompt before sending to image generator",
-				modalStore
+				"Edit the prompt before sending to image generator"
 			);
 			break;
 		}
@@ -413,7 +410,7 @@ export async function interactiveSd(
 	//DebugLogger.warn("Prompt returned", prom.prompt);
 	try {
 		if (hash && hash > 0) {
-			await EngineConversation.updateMedia(game.id, hash, {
+			await EngineConversation.updateMedia(game.hash, hash, {
 				prompt: prom.prompt,
 				type: "image",
 				transacting: true
@@ -428,7 +425,7 @@ export async function interactiveSd(
 		// On error, remove the additional media from the conversation.
 		if (hash) {
 			console.log("Error updating media", error);
-			await EngineConversation.updateMedia(game.id, hash, {
+			await EngineConversation.updateMedia(game.hash, hash, {
 				prompt: "",
 				type: "",
 				transacting: false

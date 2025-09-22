@@ -10,7 +10,8 @@ const pathBase = "data";
 function getPath(path: string, db: string, umanId?: any): string {
 	if (path === "/") return `${pathBase}/${db}`; //for shit in data/database.json
 	if (!path) {
-		if (!umanId || umanId === "" || umanId.includes("/")) throw new Error("Baws! Hamish 'as gone!");
+		//FIXME: remember to reinstate this! -- if (!umanId || umanId === "" || umanId.includes("/")) throw new Error("Baws! Hamish 'as gone!");
+		if(!umanId) umanId = "defaultUser";
 		path = `users/${umanId}`;
 	}
 	return `${pathBase}/${path}/${db}`;

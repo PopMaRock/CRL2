@@ -152,8 +152,12 @@
     radial-gradient(circle 1500px at 0% 20%, hsl(from var(--color-primary) h s l / 0.06), transparent 95%),
     radial-gradient(circle 1500px at 98% 1%, hsl(from var(--color-destructive) h s l / 0.06), transparent 55%);
   }
+  /*add the cursor pointer back in because the shadcn devs are fuckin mongols and removed it
+  apologies, it was the bellends that make tailwind that removed it. Arseholes. */
+  :where(button, [role="button"]):not([disabled]) {
+  cursor: pointer;
 }
-
+}
 @layer utilities {
   .has-\[\>svg\]\:px-3 {
       padding-block: 1.3em;

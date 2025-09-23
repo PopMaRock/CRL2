@@ -106,8 +106,8 @@ Metadata: no metadata`);
             for online robbers.
           </p>
           <div class="mt-10 flex items-center gap-x-6">
-            <Button variant="secondary" class="cursor-pointer text-sm font-semibold">New Game</Button>
-            <Button variant="default" href="#" class="cursor-pointer text-sm font-semibold leading-6"
+            <Button variant="secondary" class="text-sm font-semibold">New Game</Button>
+            <Button variant="default" href="#" class="text-sm font-semibold leading-6"
               >Continue <span aria-hidden="true">→</span></Button
             >
           </div>
@@ -122,18 +122,18 @@ Metadata: no metadata`);
 <div class="grid auto-rows-min gap-4 md:grid-cols-3">
   <div class="bg-muted/50 aspect-video rounded-xl p-4 flex flex-col gap-2">
     {#if PUBLIC_DEBUG === "true"}
-      <Button class="cursor-pointer" onclick={async () => testEmbedding()}>Test Embedding</Button>
-      <Button class="cursor-pointer" onclick={async () => testSentiment()}>Test Sentiment</Button>
-      <Button class="cursor-pointer" onclick={async () => testSummarise()}>Test Summarise</Button>
-      <Button class="cursor-pointer" onclick={async () => testTags()}>Test Tags</Button>
-      <Button class="cursor-pointer" onclick={async () => testTokenCount()}>Test Token Count</Button>
+      <Button onclick={async () => testEmbedding()}>Test Embedding</Button>
+      <Button onclick={async () => testSentiment()}>Test Sentiment</Button>
+      <Button onclick={async () => testSummarise()}>Test Summarise</Button>
+      <Button onclick={async () => testTags()}>Test Tags</Button>
+      <Button onclick={async () => testTokenCount()}>Test Token Count</Button>
     {/if}
   </div>
   <div class="bg-muted/50 aspect-video rounded-xl p-4 flex flex-col gap-2">
-    <Button class="cursor-pointer" onclick={async () => testContext()}>Test Context</Button>
-    <Button class="cursor-pointer" onclick={async () => testEvolution()}>Test Evolution</Button>
+    <Button onclick={async () => testContext()}>Test Context</Button>
+    <Button onclick={async () => testEvolution()}>Test Evolution</Button>
   </div>
   <div class="bg-muted/50 aspect-video rounded-xl p-4 flex flex-col gap-2">
-    <Button class="cursor-pointer" onclick={async () => testWdTagger()}>Test WD Tagger</Button>
+    <Button onclick={async () => testWdTagger()}>Test WD Tagger</Button>
   </div>
 </div>

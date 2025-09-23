@@ -189,14 +189,14 @@
 	<div class="grid grid-cols-3 gap-4 p-4">
 		<CharacterImageManage bind:imageSrc={$CharacterStore.images.avatar}>
 			<div>
-				<Button variant="link" class="text-slate-400 cursor-pointer text-sm font-semibold" onclick={() => characterFileInput.click()}>Upload a image</Button>
+				<Button variant="link" class="text-slate-400 text-sm font-semibold" onclick={() => characterFileInput.click()}>Upload a image</Button>
 			</div>
 			{#if $CharacterStore?.images?.avatar}
 				<div>
 					<Button variant="link" class="text-slate-400 text-sm font-semibold" onclick={() => downloadImage($CharacterStore.images.avatar)}>Download</Button>
 				</div>
 			{/if}
-			<Button variant="link" class="text-slate-400 cursor-pointer text-sm font-semibold" onclick={async () => await removeBg($CharacterStore.images.avatar, "avatar")}
+			<Button variant="link" class="text-slate-400 text-sm font-semibold" onclick={async () => await removeBg($CharacterStore.images.avatar, "avatar")}
 				>Remove background</Button
 			>
 		</CharacterImageManage>
@@ -214,20 +214,20 @@
 				/>
 			</div>
 			<div>
-				<Button class="cursor-pointer text-xs font-semibold" onclick={async () => getHeadshot($CharacterStore.images.avatar, facePadding)}
+				<Button class="text-xs font-semibold" onclick={async () => getHeadshot($CharacterStore.images.avatar, facePadding)}
 					>(Re)Generate</Button
 				>
 			</div>
 			{#if $CharacterStore.images.face}
 				<div>
-					<Button class="cursor-pointer text-sm font-semibold" onclick={() => downloadImage($CharacterStore.images.face)}>Download</Button>
+					<Button class="text-sm font-semibold" onclick={() => downloadImage($CharacterStore.images.face)}>Download</Button>
 				</div>
 			{/if}
 		</CharacterImageManage>
 		<CharacterImageManage imageSrc={$CharacterStore.images.backgroundAvatar}>
-			<div><Button size="sm" variant="link" class="text-slate-400 cursor-pointer text-xs font-semibold" onclick={() => backgroundFileInput.click()}>Upload a background image</Button></div>
+			<div><Button size="sm" variant="link" class="text-slate-400 text-xs font-semibold" onclick={() => backgroundFileInput.click()}>Upload a background image</Button></div>
 			{#if $CharacterSettingsStore.sd}
-				<div><Button variant="link" class="cursor-pointer text-slate-400 text-xs font-semibold" onclick={async () => generateBackground()}>Generate</Button></div>
+				<div><Button variant="link" class="text-slate-400 text-xs font-semibold" onclick={async () => generateBackground()}>Generate</Button></div>
 			{/if}
 
 			<!--<span class="text-sm">Generate background image</span>-->

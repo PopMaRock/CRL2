@@ -137,10 +137,10 @@
   <div class="flex items-center justify-between mt-10">
     <h1 class="text-4xl font-bold md:text-6xl">CHARACTERS</h1>
     <div class="md:flex sm:gap-x-2 items-center">
-      <Button class="inline-flex items-center leading-6 cursor-pointer" onclick={createOwnCharacter}
+      <Button class="inline-flex items-center leading-6" onclick={createOwnCharacter}
         ><span class="sm:hidden xl:block">Create</span> <CiAddPlus class="w-5 ml-1" /></Button
       >
-      <Button class="inline-flex items-center leading-6 cursor-pointer" onclick={importCharacter}>
+      <Button class="inline-flex items-center leading-6" onclick={importCharacter}>
         <span class="sm:hidden xl:block">Import</span>
         <CiCloudDownload class="w-5 ml-1" />
       </Button>
@@ -157,10 +157,10 @@
 <Drawer
   dismissible={false}
   class="!w-[50em] min-h-[100em]"
-  title="Enter Commodity"
-  description="Enter commodity"
+  title="Create a new cunt"
+  description=""
   bind:isOpen={newCharacterIsOpen}
-  nestedTitle="Add New Commodity"
+  nestedTitle=""
   nestedDismissible={false}
 >
   <NewCharacter
@@ -174,10 +174,10 @@
 </Drawer>
 <Drawer
   dismissible={false}
-  title="Import Commodity"
-  description="Import commodity"
+  title="Import Cunt"
+  description=""
   bind:isOpen={importCharacterIsOpen}
-  nestedTitle="Import Commodity"
+  nestedTitle=""
   nestedDismissible={false}
 >
   <ImportCharacter

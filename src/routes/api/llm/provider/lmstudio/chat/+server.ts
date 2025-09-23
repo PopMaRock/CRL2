@@ -2,11 +2,18 @@
 
 import { LMStudioClient } from "@lmstudio/sdk";
 import { DebugLogger } from "$lib/utilities/error-manager";
-import { resp } from "../../../../../../lib/utilities/apiHelper";
 import { addIfPresent } from "$lib/utilities/utils";
+import { resp } from "../../../../../../lib/utilities/apiHelper";
 
 export const POST = async ({ request }) => {
-	const client = new LMStudioClient();
+	let client = null;
+	try {
+		//the below will aggressively throw and error and kill the server.
+		client = new LMStudioClient();
+	} catch (e: any) {
+		DebugLogger.error("LMStudio client initialization error:", e.message);
+		return resp({ error: "LMStudio client initialization error: " + e.message }, 500);
+	}
 	const { messages, settings, user } = await request.json();
 	const signal = (request as any).signal || new AbortController().signal;
 	if (!messages || !Array.isArray(messages)) {

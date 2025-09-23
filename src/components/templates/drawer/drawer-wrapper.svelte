@@ -73,7 +73,7 @@
                     variant="outline"
                     onclick={onclose}
                     type="button"
-                    class="cursor-pointer inline-flex items-center justify-center btn"
+                    class="inline-flex items-center justify-center btn"
                 >
                     <CiCloseCircle class="w-5 h-5 mr-1" />
                     Close
@@ -85,7 +85,7 @@
                     onclick={onsave}
                     type="button"
                     disabled={disabled || loading}
-                    class="cursor-pointer inline-flex items-center justify-center !py-[1.4em] text-center btn"
+                    class="inline-flex items-center justify-center !py-[1.4em] text-center btn"
                 >
                     {#if loading}
                         <SvgSpinnersTadpole class="w-5 h-5 ml-2 animate-spin" />

@@ -39,7 +39,7 @@
   {#if showActionButton}
     <button
       type="button"
-      class={cn("cursor-pointer hover:text-yellow-800 hover:font-bold absolute top-0 right-0 m-2", loading ? "animate-ping" : "")}
+      class={cn("hover:text-yellow-800 hover:font-bold absolute top-0 right-0 m-2", loading ? "animate-ping" : "")}
       title={actionButtonTitle}
       on:click={() => dispatch("action")}
     >

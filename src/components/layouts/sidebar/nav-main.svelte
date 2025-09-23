@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import Button from "$components/ui/button/button.svelte";
 	import * as Collapsible from "$components/ui/collapsible/index.js";
 	import * as Sidebar from "$components/ui/sidebar/index.js";
 	import MajesticonsChevronRight from "~icons/majesticons/chevron-right";
@@ -11,8 +10,6 @@
 		items: {
 			title: string;
 			url: string;
-			// this should be `Component` after @lucide/svelte updates types
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			icon?: any;
 			isActive?: boolean;
 			items?: {

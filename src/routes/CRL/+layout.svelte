@@ -1,12 +1,13 @@
 <script lang="ts">
   import AppSidebar from "$components/layouts/sidebar/app-sidebar.svelte";
+    import EngineRightBar from "$components/settings/engine-right-bar.svelte";
   import SheetTemplate from "$components/templates/sheet-template.svelte";
   import { Button } from "$components/ui/button";
   import { Input } from "$components/ui/input";
   import { Label } from "$components/ui/label";
   import { Separator } from "$components/ui/separator/index.js";
   import * as Sidebar from "$components/ui/sidebar/index.js";
-  import GameIconsSideswipe from "~icons/game-icons/sideswipe";
+  import CiSettings from '~icons/ci/settings';
 
   let settingsOpen = $state(false);
   interface Props {
@@ -27,8 +28,8 @@
         <span class="text-muted-foreground">Space for shit</span>
       </div>
       <div class="flex items-center px-4">
-        <Button onclick={() => (settingsOpen = true)} variant="ghost">
-          <GameIconsSideswipe class="hover:text-primary cursor-pointer" />
+        <Button onclick={() => (settingsOpen = true)} variant="link" class="text-foreground hover:text-primary hover:animate-spin">
+          <CiSettings class="" />
         </Button>
       </div>
     </header>
@@ -38,15 +39,8 @@
   </Sidebar.Inset>
 </Sidebar.Provider>
 
-<SheetTemplate bind:isOpen={settingsOpen} preventClose={true}>
-  <div class="grid flex-1 auto-rows-min gap-6 px-4">
-    <div class="grid gap-3">
-      <Label for="name" class="text-right">Name</Label>
-      <Input id="name" value="Pedro Duarte" />
-    </div>
-    <div class="grid gap-3">
-      <Label for="username" class="text-right">Username</Label>
-      <Input id="username" value="@peduarte" />
-    </div>
+<SheetTemplate bind:isOpen={settingsOpen} preventClose={true} showSave={false}>
+  <div class="px-4">
+   <EngineRightBar/>
   </div>
 </SheetTemplate>

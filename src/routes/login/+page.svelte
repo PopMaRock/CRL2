@@ -211,14 +211,14 @@
                   >&#76;&#111;&#103;&#105;&#110; &#x21dd;</Button
                 >
                 <p class="py-4 text-sm">
-                  <Button type="button" variant="link" class="cursor-pointer text-muted-foreground" onclick={() => (dodoAction = "slop")}
+                  <Button type="button" variant="link" class="text-muted-foreground" onclick={() => (dodoAction = "slop")}
                     >&#82;&#101;&#103;&#105;&#115;&#116;&#101;&#114;</Button
                   >
                   |
                   <Button
                     type="button"
                     variant="link"
-                    class="cursor-pointer text-muted-foreground"
+                    class="text-muted-foreground"
                     onclick={() => (error = "You're scunnered, pal. Due of the way encryption works, you can't recover your password.")}
                   >
                     &#70;&#111;&#114;&#103;&#111;&#116;&#32;&#80;&#97;&#115;&#115;&#119;&#111;&#114;&#100;
@@ -284,7 +284,7 @@
                   >&#82;&#101;&#103;&#105;&#115;&#116;&#101;&#114; &#x21dd;</Button
                 >
                 <p class="py-4 text-sm">
-                  <Button type="button" class="cursor-pointer text-muted-foreground" variant="link" onclick={() => (dodoAction = "plop")}
+                  <Button type="button" class="text-muted-foreground" variant="link" onclick={() => (dodoAction = "plop")}
                     >&#76;&#111;&#103;&#105;&#110;</Button
                   >
                   |

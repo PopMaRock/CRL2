@@ -23,7 +23,7 @@ function createEnginePersonaStore() {
 		subscribe,
 		set,
 		update,
-		get: async (fetch?: Window["fetch"]) => {
+		get: async () => {
 			try {
 				const data = await dbGet({ db: "CRL", collection: "personas" });
 				if (data) {

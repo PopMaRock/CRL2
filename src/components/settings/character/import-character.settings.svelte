@@ -27,10 +27,29 @@
         try {
             loading = true;
             let charData: any;
-            if (daUrl) {
-                charData = await importURL(daUrl);
+            if (daUrl && daUrl.length > 0) {
+                const match = daUrl.match(/^https:\/\/www\.characterhub\.org\/characters\/([^\/\s]+)\/([^\/\s]+)\/?$/i);
+                if (!match) {
+                    return DebugLogger.warn(
+                        "Invalid URL format. Use https://www.characterhub.org/characters/<username>/<slug>",
+                        { toast: true }
+                    );
+                }
+                try {
+                    charData = await importURL(daUrl);
+                } catch (err) {
+                    DebugLogger.error(err, { toast: true });
+                    return;
+                }
             } else if (daFile) {
-                charData = await importFile(daFile);
+                try {
+                    charData = await importFile(daFile);
+                } catch (err) {
+                    DebugLogger.error(err, { toast: true });
+                    return;
+                }
+            } else {
+                return DebugLogger.warn("Please provide a valid URL or upload a file to import.", { toast: true });
             }
             if (!charData) {
                 return DebugLogger.warn("No character data extracted.", { toast: true });
@@ -88,7 +107,7 @@
             class="rounded-md min-h-36"
             maxFiles={1}
             fileCount={0}
-            maxFileSize={10240}
+            maxFileSize={1024000}
             accept="image/*"
             onFileRejected={(e) => {
                 DebugLogger.warn("File rejected:", e, { toast: true });

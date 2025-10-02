@@ -37,7 +37,7 @@
 
   function updateSetting(e: any, type: string) {
     if (type === "model") {
-      $EngineSdCharacter.model = e.target.value;
+      $EngineSdCharacter.model = e;
       //if $EngineSdCharacter.model toLowerCase contains "flux" then .modelType = flux
       if ($EngineSdCharacter.model.toLowerCase().includes("flux")) {
         DebugLogger.debug("flux model");
@@ -57,10 +57,10 @@
       }
     }
     if (type === "sampler") {
-      $EngineSdCharacter.sampler = e.target.value;
+      $EngineSdCharacter.sampler = e;
     }
     if (type === "scheduler") {
-      $EngineSdCharacter.scheduler = e.target.value;
+      $EngineSdCharacter.scheduler = e;
     }
   }
 </script>
@@ -70,7 +70,7 @@
     <Label class="label h5 pb-2 mt-4">Workflow</Label>
     <div class="grid grid-cols-[1fr_auto] items-center">
       <Select.Root type="single" name="source" onValueChange={(e) => ($EngineSdCharacter.comfy.imageWf = e)}>
-        <Select.Trigger class="w-[180px]">{$EngineSdCharacter.comfy.imageWf ?? "Select workflow..."}</Select.Trigger>
+        <Select.Trigger class="w-full">{$EngineSdCharacter.comfy.imageWf ?? "Select workflow..."}</Select.Trigger>
         <Select.Content>
           {#each workflows as wf}
             <Select.Item value={wf}>{wf}</Select.Item>
@@ -85,11 +85,11 @@
     </div>
   </div>
 {/if}
-<div class="dark:variant-filled-surface rounded-md mt-2 mb-5 p-4 !pt-2">
+<div class="dark:bg-slate-900 rounded-md mt-2 mb-5 p-4 !pt-2">
   <Label class="label h5 pb-2 mt-4">Model</Label>
   <div>
     <Select.Root type="single" name="source" onValueChange={(e) => updateSetting(e, "model")}>
-      <Select.Trigger class="w-[180px]">{$EngineSdCharacter.model ?? "Select model..."}</Select.Trigger>
+      <Select.Trigger class="w-full">{$EngineSdCharacter.model ?? "Select model..."}</Select.Trigger>
       <Select.Content>
         {#each models as model}
           <Select.Item value={model}>{model}</Select.Item>
@@ -100,57 +100,67 @@
 
   <!-- add Rangesliders for scale, steps and a textboxgroup for seed (number) -->
   <div class="grid grid-cols-2 gap-4 pt-4">
-    <!-- CFG -->
-    <Slider
-      type="single"
-      min={fixedParams.scaleMin}
-      max={$EngineSdCharacter.modelType === "flux" ? 3.5 : fixedParams.scaleMax}
-      step={fixedParams.scaleStep}
-      bind:value={$EngineSdCharacter.scale}
-      {disabled}
-    />
-    <Slider
-      type="single"
-      min={fixedParams.stepsMin}
-      max={fixedParams.stepsMax}
-      step={fixedParams.stepsStep}
-      bind:value={$EngineSdCharacter.steps}
-      {disabled}
-    />
-    <TextboxGroup
+    <div>
+      <Label class="label h5 pb-2">CFG Scale {$EngineSdCharacter.scale ?? "NA"}</Label>
+      <Slider
+        type="single"
+        min={fixedParams.scaleMin}
+        max={$EngineSdCharacter.modelType === "flux" ? 3.5 : fixedParams.scaleMax}
+        step={fixedParams.scaleStep}
+        bind:value={$EngineSdCharacter.scale}
+        {disabled}
+      />
+    </div>
+    <div>
+      <Label class="label h5 pb-2">Steps {$EngineSdCharacter.steps ?? "NA"}</Label>
+      <Slider
+        type="single"
+        min={fixedParams.stepsMin}
+        max={fixedParams.stepsMax}
+        step={fixedParams.stepsStep}
+        bind:value={$EngineSdCharacter.steps}
+        {disabled}
+      />
+    </div>
+  </div>
+      <TextboxGroup
       label="Seed"
       name="seed"
       type="number"
+      class="mt-2"
       {disabled}
       bind:value={$EngineSdCharacter.seed}
       placeholder="Enter seed"
       iconHelp={true}
       helpText="Seed for the model"
     />
-  </div>
-</div>
-<div class="dark:variant-filled-surface rounded-md mt-2 mb-5 p-4 !pt-2">
-  <Label class="label h5 pb-2 mt-4">Sampler</Label>
-  <div>
-    <Select.Root type="single" name="source" onValueChange={(e) => updateSetting(e, "sampler")}>
-      <Select.Trigger class="w-[180px]">{$EngineSdCharacter.sampler ?? "Select sampler..."}</Select.Trigger>
-      <Select.Content>
-        {#each samplers as sampler}
-          <Select.Item value={sampler}>{sampler}</Select.Item>
-        {/each}
-      </Select.Content>
-    </Select.Root>
-  </div>
-  <Label class="label h5 pb-2 mt-4">Scheduler</Label>
-  <div>
-    <Select.Root type="single" name="source" onValueChange={(e) => updateSetting(e, "scheduler")}>
-      <Select.Trigger class="w-[180px]">{$EngineSdCharacter.scheduler ?? "Select scheduler..."}</Select.Trigger>
-      <Select.Content>
-        {#each schedulers as scheduler}
-          <Select.Item value={scheduler}>{scheduler}</Select.Item>
-        {/each}
-      </Select.Content>
-    </Select.Root>
+  <div class="grid grid-cols-2 gap-4">
+    <div>
+      <Label class="label h5 pb-2 mt-4">Sampler</Label>
+      <div>
+        <Select.Root type="single" name="source" onValueChange={(e) => updateSetting(e, "sampler")}>
+          <Select.Trigger class="w-full">{$EngineSdCharacter.sampler ?? "Select sampler..."}</Select.Trigger>
+          <Select.Content>
+            {#each samplers as sampler}
+              <Select.Item value={sampler}>{sampler}</Select.Item>
+            {/each}
+          </Select.Content>
+        </Select.Root>
+      </div>
+    </div>
+    <div>
+      <Label class="label h5 pb-2 mt-4">Scheduler</Label>
+      <div>
+        <Select.Root type="single" name="source" onValueChange={(e) => updateSetting(e, "scheduler")}>
+          <Select.Trigger class="w-full">{$EngineSdCharacter.scheduler ?? "Select scheduler..."}</Select.Trigger>
+          <Select.Content>
+            {#each schedulers as scheduler}
+              <Select.Item value={scheduler}>{scheduler}</Select.Item>
+            {/each}
+          </Select.Content>
+        </Select.Root>
+      </div>
+    </div>
   </div>
 </div>
 <!--

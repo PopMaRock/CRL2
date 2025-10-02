@@ -315,7 +315,7 @@ export async function interactiveSd(
 	const Dcs = get(EngineConversation);
 	let opts: any = {};
 	const { dSD, game } = getSdStores();
-	if (!game.hash) return DebugLogger.error("No character/game ID found.");
+	//if (!game.hash) return DebugLogger.error("No character/game ID found.");
 
 	// Helper to handle LLM-related prompt generation workflow.
 	async function handleLlmPrompt(getPrompt: () => Promise<any>, title: string, desc: string) {

@@ -99,6 +99,8 @@ function chubCardV2toCharacter(value: any, image: string) {
 	//From an extensive look at 1 card, take this as gospel (dear fuck, I had to google how to spell 'gospel' and it still looks wrong...)
 	let descriptionStr = value.data?.description ?? "";
 	try {
+		//look she/her first to determine character gender is female
+		char.gender = /\b(she|her)\b/i.test(descriptionStr) ? "female" : "male";
 		descriptionStr = extractAndAssign(/Appearance:\s*([^\n]+)/, descriptionStr, (val) => (char.faceCaption = val));
 		descriptionStr = extractAndAssign(/Personality:\s*([^\n]+)/, descriptionStr, (val) => char.strengths.push(val));
 		descriptionStr = extractAndAssign(/Traits:\s*([^\n]+)/, descriptionStr, (val) => char.flaws.push(val));
@@ -111,6 +113,7 @@ function chubCardV2toCharacter(value: any, image: string) {
 			descriptionStr,
 			(val) => (char.age = Number.parseInt(val))
 		);
+		//we now need to loop through each char element and remove any empty brackets [], {}, () or any combination of the three.
 		//char.description = value.data?.description ?? "";
 		if (value.data?.system_prompt) {
 			llmSettings.llmTextSettings.prompt = value.data?.system_prompt;
@@ -159,8 +162,12 @@ function readExif(base64: string) {
 function extractAndAssign(regex: RegExp, str: string, assign: (value: string) => void) {
 	const match = str?.match(regex);
 	if (match?.[1]) {
-		assign(match[1].trim());
-		return str.replace(regex, "").trim();
+		let cleaned = match[1].trim();
+		cleaned = cleaned.replace(/[()[\]{}*'"`]/g, ""); // Additional cleaning: remove all brackets, stars, and quotes
+		cleaned = cleaned.trim(); // Trim again after removals
+		cleaned = cleaned.replace(/^\W+/, "").replace(/\W+$/, ""); // Remove leading and trailing non-word characters (including commas, brackets, spaces)
+		assign(cleaned);
+		return str.replace(regex, "").trim(); //remove content and brackets.
 	}
 	return str ?? "";
 }

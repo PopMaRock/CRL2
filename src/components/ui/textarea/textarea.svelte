@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createEventDispatcher, type Component } from "svelte";
+  import { type Component, createEventDispatcher } from "svelte";
   import type { SVGAttributes } from "svelte/elements";
   import { cn } from "$lib/utilities/utils";
   export let id = "";
@@ -19,7 +19,7 @@
   export let textareaElement: HTMLTextAreaElement | null = null;
   export let transparentBg = false;
   export let additionalClasses = "";
-  
+
   const dispatch = createEventDispatcher();
   function keydown(e: KeyboardEvent) {
     dispatch("keydown", e);
@@ -55,7 +55,10 @@
     id={id ?? name}
     {name}
     {spellcheck}
-    class={`textarea-add ${heightClass} w-full leading-5 ${allowResize ? "!resize-y" : ""} ${transparentBg ? "!bg-transparent" : ""} ${additionalClasses ? additionalClasses : ""}`}
+    class={cn(
+      `${heightClass} w-full leading-5 ${allowResize ? "!resize-y" : ""} border-input placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 field-sizing-content shadow-xs flex min-h-16 w-full rounded-md border bg-transparent px-3 py-2 text-base outline-none transition-[color,box-shadow] focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm`,
+      additionalClasses,
+    )}
     bind:value
     {placeholder}
     on:blur={onBlur}

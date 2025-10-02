@@ -13,6 +13,7 @@
   import { DebugLogger } from "$lib/utilities/error-manager";
   import CiCheck from "~icons/ci/check";
   import CiCloseCircle from "~icons/ci/close-circle";
+    import Button from "$components/ui/button/button.svelte";
 
   let upscalers= $state([]); //array of upscalers
   let disabled = $state(true);
@@ -125,13 +126,13 @@
         $EngineSd.source === "webui" ? "Make sure you add --api flag to your COMMANDLINE_ARGS in Webui's webui-user.sh/.bat file!" : ""
       }`}
     />
-    <button class="btn rounded" onclick={checkUrl}>
+    <Button variant="ghost" class="btn rounded" onclick={checkUrl}>
       {#if $EngineSd[$EngineSd.source].validated === true}
-        <CiCheck class="w-16 text-success-500" />
+        <CiCheck class="w-16 text-green-500" />
       {:else}
         <CiCloseCircle class="w-16 text-destructive" />
       {/if}
-    </button>
+    </Button>
   </div>
 {/if}
 <Separator />

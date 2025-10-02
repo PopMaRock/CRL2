@@ -1,7 +1,9 @@
 <script lang="ts">
   import { onMount, tick } from "svelte";
-  import { get, writable, type Writable } from "svelte/store";
+  import { get, type Writable, writable } from "svelte/store";
   import { Button } from "$components/ui/button";
+  import * as Select from "$components/ui/select/index.js";
+  import Separator from "$components/ui/separator/separator.svelte";
   import SlideToggle from "$components/ui/slide-toggle/slide-toggle.svelte";
   import { llmGetModels, llmTestConnection } from "$lib/controllers/llm";
   import { CharacterSettingsStore } from "$lib/engine/engine-character";
@@ -9,10 +11,8 @@
   import { Gamemode } from "$lib/global";
   import { engineSettings } from "$lib/stores/engine";
   import { toastr } from "$lib/ui/toastr";
-  import CiCircleHelp from "~icons/ci/circle-help";
   import { DebugLogger } from "$lib/utilities/error-manager";
-  import * as Select from "$components/ui/select/index.js";
-    import Separator from "$components/ui/separator/separator.svelte";
+  import CiCircleHelp from "~icons/ci/circle-help";
 
   let mode = $state("game");
   let store: Writable<EngineSettings | DungeonGameSettings | CharacterSettings> = writable();
@@ -113,7 +113,7 @@
         <p class="text-red-500">Error loading models: {error.message}</p>
       {/await}
     </div>
-    <Separator class="my-4"/>
+    <Separator class="my-4" />
     <div
       class="flex items-center"
       title="If you have limit VRAM, you can unload text models before running ComfyUI.&#013;This causes slight delay on your next message."

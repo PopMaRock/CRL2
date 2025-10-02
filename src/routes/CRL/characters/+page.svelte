@@ -172,19 +172,12 @@
   />
   <!-- 	bind:nestedIsOpen={showAddCommodity} {#snippet nested()} ... {/snippet}-->
 </Drawer>
-<Drawer
-  dismissible={false}
-  title="Import Cunt"
-  description=""
-  bind:isOpen={importCharacterIsOpen}
-  nestedTitle=""
-  nestedDismissible={false}
->
+<Drawer dismissible={false} title="Import Cunt" description="" bind:isOpen={importCharacterIsOpen} nestedTitle="" nestedDismissible={false}>
   <ImportCharacter
     close={() => (importCharacterIsOpen = false)}
     created={async () => {
       importCharacterIsOpen = false;
-      await getRecentlyPlayed();
+      newCharacterIsOpen = true;
     }}
   />
   <!-- 	bind:nestedIsOpen={showAddCommodity} {#snippet nested()}
